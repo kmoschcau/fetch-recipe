@@ -8,6 +8,7 @@ namespace FetchRecipe.Data
     /// <summary>
     /// Properties that take Mass as values are of the form '&lt;Number&gt; &lt;Mass unit of measure&gt;'. E.g., '7 kg'.
     /// </summary>
+    [JsonConverter(typeof(MassJsonConverter))]
     public sealed partial class Mass
     {
         /// <summary>A regular expression to match a text representation of a <see cref="Mass"/></summary>
@@ -27,7 +28,7 @@ namespace FetchRecipe.Data
         /// </returns>
         public static Mass? Parse(string? text)
         {
-            if (text == null)
+            if (text is null)
             {
                 return null;
             }
@@ -72,8 +73,7 @@ namespace FetchRecipe.Data
             JsonSerializerOptions options
         )
         {
-            return Mass.Parse(reader.GetString())
-                ?? throw new JsonException("Could not parse Mass.");
+            return Mass.Parse(reader.GetString()) ?? throw new JsonException();
         }
 
         public override void Write(Utf8JsonWriter writer, Mass value, JsonSerializerOptions options)

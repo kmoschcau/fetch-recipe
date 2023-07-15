@@ -8,6 +8,7 @@ namespace FetchRecipe.Data
     /// <summary>
     /// Properties that take Energy as values are of the form '&lt;Number&gt; &lt;Energy unit of measure&gt;'.
     /// </summary>
+    [JsonConverter(typeof(EnergyJsonConverter))]
     public sealed partial class Energy
     {
         /// <summary>A regular expression to match a text representation of an <see cref="Energy"/></summary>
@@ -27,7 +28,7 @@ namespace FetchRecipe.Data
         /// </returns>
         public static Energy? Parse(string? text)
         {
-            if (text == null)
+            if (text is null)
             {
                 return null;
             }
@@ -72,11 +73,14 @@ namespace FetchRecipe.Data
             JsonSerializerOptions options
         )
         {
-            return Energy.Parse(reader.GetString())
-                ?? throw new JsonException("Could not parse Mass.");
+            return Energy.Parse(reader.GetString()) ?? throw new JsonException();
         }
 
-        public override void Write(Utf8JsonWriter writer, Energy value, JsonSerializerOptions options)
+        public override void Write(
+            Utf8JsonWriter writer,
+            Energy value,
+            JsonSerializerOptions options
+        )
         {
             writer.WriteStringValue(value.ToString());
         }

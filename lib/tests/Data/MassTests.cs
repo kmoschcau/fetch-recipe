@@ -3,7 +3,7 @@ namespace FetchRecipe.Data
     [TestFixture(TestName = "Mass.Parse()")]
     public class MassParseTests
     {
-        [Test(Description = "Foo")]
+        [Test]
         public void WhenGivenNullItReturnsNull()
         {
             Mass? energy = Mass.Parse(null);

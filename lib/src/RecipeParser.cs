@@ -6,7 +6,7 @@ namespace FetchRecipe
 {
     public static class RecipeParser
     {
-        private static readonly JsonSerializerOptions options = new JsonSerializerOptions
+        private static readonly JsonSerializerOptions options = new()
         {
             NumberHandling = JsonNumberHandling.AllowReadingFromString,
             Converters = { new Iso8601DurationJsonConverter() }

@@ -75,28 +75,28 @@ namespace FetchRecipe.Data
         {
             if (nullableTimeSpan is TimeSpan timeSpan)
             {
-                StringBuilder builder = new StringBuilder("P");
+                StringBuilder builder = new("P");
 
                 if (timeSpan.Days > 0)
                 {
-                    builder.Append(timeSpan.Days).Append("D");
+                    _ = builder.Append(timeSpan.Days).Append('D');
                 }
 
-                builder.Append("T");
+                _ = builder.Append('T');
 
                 if (timeSpan.Hours > 0)
                 {
-                    builder.Append(timeSpan.Hours).Append("H");
+                    _ = builder.Append(timeSpan.Hours).Append('H');
                 }
 
                 if (timeSpan.Minutes > 0)
                 {
-                    builder.Append(timeSpan.Minutes).Append("M");
+                    _ = builder.Append(timeSpan.Minutes).Append('M');
                 }
 
                 if (timeSpan.Seconds > 0)
                 {
-                    builder.Append(timeSpan.Seconds).Append("S");
+                    _ = builder.Append(timeSpan.Seconds).Append('S');
                 }
                 return builder.ToString();
             }

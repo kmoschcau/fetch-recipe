@@ -31,10 +31,10 @@ namespace FetchRecipe
                 Assert.That(recipe.RecipeCuisine, Is.EqualTo("American"), "RecipeCuisine");
 
                 Assert.That(recipe.RecipeIngredient, Is.Not.Null, "RecipeIngredient");
-                Assert.That(recipe.RecipeIngredient.Count, Is.EqualTo(7), "RecipeIngredient.Count");
+                Assert.That(recipe.RecipeIngredient, Has.Count.EqualTo(7), "RecipeIngredient.Count");
 
                 Assert.That(recipe.RecipeInstructions, Is.Not.Null, "RecipeInstructions");
-                Assert.That(recipe.RecipeInstructions.Count, Is.EqualTo(6), "RecipeInstructions");
+                Assert.That(recipe.RecipeInstructions, Has.Count.EqualTo(6), "RecipeInstructions");
 
                 Assert.That(recipe.RecipeYield, Is.EqualTo(10), "RecipeYield");
 

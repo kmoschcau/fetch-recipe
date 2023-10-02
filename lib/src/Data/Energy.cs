@@ -21,10 +21,10 @@ namespace FetchRecipe.Data
         private static partial Regex CreateRegex();
 
         /// <summary>Parse a given string into an <see cref="Energy"/>.</summary>
-        /// <param name="text">a text representation of a <see cref="Energy"/></param>
+        /// <param name="text">a text representation of an <see cref="Energy"/></param>
         /// <returns>
         /// <see langword="null"/>, if the given <see langword="string"/> is either <see langword="null"/> or does not
-        /// match <see cref="Regex"/>; a <see cref="Energy"/> otherwise
+        /// match <see cref="Regex"/>; an <see cref="Energy"/> otherwise
         /// </returns>
         public static Energy? Parse(string? text)
         {
@@ -52,7 +52,7 @@ namespace FetchRecipe.Data
             Unit = unit;
         }
 
-        /// <summary>The number of the <see cref="Energy"/></summary>
+        /// <summary>The amount of the <see cref="Energy"/></summary>
         public int Number { get; set; }
 
         /// <summary>The unit of the <see cref="Energy"/></summary>

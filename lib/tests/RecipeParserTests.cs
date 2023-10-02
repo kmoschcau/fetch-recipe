@@ -31,7 +31,13 @@ namespace FetchRecipe
                 Assert.That(recipe.RecipeCuisine, Is.EqualTo("American"), "RecipeCuisine");
 
                 Assert.That(recipe.RecipeIngredient, Is.Not.Null, "RecipeIngredient");
-                Assert.That(recipe.RecipeIngredient, Has.Count.EqualTo(7), "RecipeIngredient.Count");
+                AssertIngredient(recipe.RecipeIngredient, 0, "2", "cups", "flour");
+                AssertIngredient(recipe.RecipeIngredient, 1, "3/4", "cup", "white sugar");
+                AssertIngredient(recipe.RecipeIngredient, 2, "2", "teaspoons", "baking powder");
+                AssertIngredient(recipe.RecipeIngredient, 3, "1/2", "teaspoon", "salt");
+                AssertIngredient(recipe.RecipeIngredient, 4, "1/2", "cup", "butter");
+                AssertIngredient(recipe.RecipeIngredient, 5, "2", "eggs", "");
+                AssertIngredient(recipe.RecipeIngredient, 6, "3/4", "cup", "milk");
 
                 Assert.That(recipe.RecipeInstructions, Is.Not.Null, "RecipeInstructions");
                 Assert.That(recipe.RecipeInstructions, Has.Count.EqualTo(6), "RecipeInstructions");
@@ -62,6 +68,25 @@ namespace FetchRecipe
                     Is.EqualTo("This coffee cake is awesome and perfect for parties."),
                     "Description"
                 );
+            });
+        }
+
+        private static void AssertIngredient(
+            List<RecipeIngredient> ingredients,
+            int index,
+            string amount,
+            string? unit,
+            string description
+        )
+        {
+            Assert.That(ingredients, Has.Count.GreaterThanOrEqualTo(index + 1));
+            RecipeIngredient? ingredient = ingredients[index];
+            Assert.That(ingredient, Is.Not.Null);
+            Assert.Multiple(() =>
+            {
+                Assert.That(ingredient?.Amount, Is.EqualTo(amount), $"RecipeIngredient.{index}.Amount");
+                Assert.That(ingredient?.Unit, Is.EqualTo(unit), $"RecipeIngredient.{index}.Unit");
+                Assert.That(ingredient?.Description, Is.EqualTo(description), $"RecipeIngredient.{index}.Description");
             });
         }
     }

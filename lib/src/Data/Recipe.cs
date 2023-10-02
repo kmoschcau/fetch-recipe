@@ -27,7 +27,7 @@ namespace FetchRecipe.Data
 
         /// <summary>A single ingredient used in the recipe, e.g. sugar, flour or garlic.</summary>
         [JsonPropertyName("recipeIngredient")]
-        public List<string> RecipeIngredient { get; set; } = new List<string>();
+        public List<RecipeIngredient> RecipeIngredient { get; set; } = new();
 
         /// <summary>
         /// A step in making the recipe, in the form of a single item (document, video, etc.) or an ordered list with

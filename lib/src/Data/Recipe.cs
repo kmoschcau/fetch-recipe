@@ -34,7 +34,7 @@ namespace FetchRecipe.Data
         /// HowToStep and/or HowToSection items.
         /// </summary>
         [JsonPropertyName("recipeInstructions")]
-        public List<object> RecipeInstructions { get; set; } = new List<object>();
+        public List<HowToStep> RecipeInstructions { get; set; } = new();
 
         [JsonPropertyName("recipeYield")]
         public int? RecipeYield { get; set; }

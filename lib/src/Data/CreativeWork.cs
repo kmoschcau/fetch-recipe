@@ -25,5 +25,9 @@ namespace FetchRecipe.Data
         /// </summary>
         [JsonPropertyName("keywords")]
         public string? Keywords { get; set; }
+
+        /// <summary>The textual content of this CreativeWork.</summary>
+        [JsonPropertyName("text")]
+        public string? Text { get; set; }
     }
 }

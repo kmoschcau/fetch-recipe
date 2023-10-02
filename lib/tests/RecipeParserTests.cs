@@ -40,7 +40,37 @@ namespace FetchRecipe
                 AssertIngredient(recipe.RecipeIngredient, 6, "3/4", "cup", "milk");
 
                 Assert.That(recipe.RecipeInstructions, Is.Not.Null, "RecipeInstructions");
-                Assert.That(recipe.RecipeInstructions, Has.Count.EqualTo(6), "RecipeInstructions");
+                AssertRecipeInstruction(
+                    recipe.RecipeInstructions,
+                    0,
+                    "Preheat",
+                    "Preheat the oven to 350 degrees F. Grease and flour a 9x9 inch pan."
+                );
+                AssertRecipeInstruction(
+                    recipe.RecipeInstructions,
+                    1,
+                    "Mix dry ingredients",
+                    "In a large bowl, combine flour, sugar, baking powder, and salt."
+                );
+                AssertRecipeInstruction(
+                    recipe.RecipeInstructions,
+                    2,
+                    "Add wet ingredients",
+                    "Mix in the butter, eggs, and milk."
+                );
+                AssertRecipeInstruction(
+                    recipe.RecipeInstructions,
+                    3,
+                    "Spread into pan",
+                    "Spread into the prepared pan."
+                );
+                AssertRecipeInstruction(
+                    recipe.RecipeInstructions,
+                    4,
+                    "Bake",
+                    "Bake for 30 to 35 minutes, or until firm."
+                );
+                AssertRecipeInstruction(recipe.RecipeInstructions, 5, "Enjoy", "Allow to cool and enjoy.");
 
                 Assert.That(recipe.RecipeYield, Is.EqualTo(10), "RecipeYield");
 
@@ -87,6 +117,18 @@ namespace FetchRecipe
                 Assert.That(ingredient?.Amount, Is.EqualTo(amount), $"RecipeIngredient.{index}.Amount");
                 Assert.That(ingredient?.Unit, Is.EqualTo(unit), $"RecipeIngredient.{index}.Unit");
                 Assert.That(ingredient?.Description, Is.EqualTo(description), $"RecipeIngredient.{index}.Description");
+            });
+        }
+
+        private static void AssertRecipeInstruction(List<HowToStep> instructions, int index, string name, string text)
+        {
+            Assert.That(instructions, Has.Count.GreaterThanOrEqualTo(index + 1));
+            HowToStep? step = instructions[index];
+            Assert.That(step, Is.Not.Null);
+            Assert.Multiple(() =>
+            {
+                Assert.That(step?.Name, Is.EqualTo(name), $"RecipeInstructions.{index}.Name");
+                Assert.That(step?.Text, Is.EqualTo(text), $"RecipeInstructions.{index}.Text");
             });
         }
     }
